@@ -40,7 +40,7 @@ import rospy
 from std_msgs.msg import String
 
 def distributor_callback(data):
-    rospy.loginfo(rospy.get_caller_id() + 'End consumer only consumes the data \
+    print(rospy.get_caller_id() + 'End consumer only consumes the data \
                     (either from a first producer or a distributor): %s', data.data)
 
 def end_consumer():
