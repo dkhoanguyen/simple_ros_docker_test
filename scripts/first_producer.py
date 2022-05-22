@@ -39,18 +39,18 @@
 import rospy
 from std_msgs.msg import String
 
-def talker():
-    pub = rospy.Publisher('chatter', String, queue_size=10)
-    rospy.init_node('talker', anonymous=True)
+def first_producer():
+    pub = rospy.Publisher('first_producer', String, queue_size=10)
+    rospy.init_node('first_producer', anonymous=True)
     rate = rospy.Rate(10) # 10hz
     while not rospy.is_shutdown():
-        hello_str = "hello world %s" % rospy.get_time()
+        hello_str = "First Producer only produces data: %s" % rospy.get_time()
         rospy.loginfo(hello_str)
         pub.publish(hello_str)
         rate.sleep()
 
 if __name__ == '__main__':
     try:
-        talker()
+        first_producer()
     except rospy.ROSInterruptException:
         pass

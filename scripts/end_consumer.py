@@ -39,10 +39,11 @@
 import rospy
 from std_msgs.msg import String
 
-def callback(data):
-    rospy.loginfo(rospy.get_caller_id() + 'I heard %s', data.data)
+def distributor_callback(data):
+    rospy.loginfo(rospy.get_caller_id() + 'End consumer only consumes the data \
+                    (either from a first producer or a distributor): %s', data.data)
 
-def listener():
+def end_consumer():
 
     # In ROS, nodes are uniquely named. If two nodes with the same
     # name are launched, the previous one is kicked off. The
@@ -51,10 +52,10 @@ def listener():
     # run simultaneously.
     rospy.init_node('listener', anonymous=True)
 
-    rospy.Subscriber('chatter', String, callback)
+    rospy.Subscriber('distributor_produce', String, distributor_callback)
 
     # spin() simply keeps python from exiting until this node is stopped
     rospy.spin()
 
 if __name__ == '__main__':
-    listener()
+    end_consumer()
