@@ -52,7 +52,7 @@ def end_consumer():
     # run simultaneously.
     rospy.init_node('listener', anonymous=True)
 
-    rospy.Subscriber('distributor_produce', String, distributor_callback)
+    rospy.Subscriber('distributor_produce ', String, distributor_callback)
 
     # spin() simply keeps python from exiting until this node is stopped
     rospy.spin()
